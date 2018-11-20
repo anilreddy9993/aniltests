@@ -18,7 +18,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class Google1 {
+public class Google1
+{
 	public ChromeDriver driver;
 	public WebDriverWait w=new WebDriverWait(driver,20);
 	@DataProvider(name="searchword")
@@ -31,7 +32,7 @@ public class Google1 {
 		{"reddy"}
 	 };
 	} 
-	@BeforeMethod()
+	@Test(priority=0)
 	public void launch()
 	{
 		System.setProperty("webdriver.chrome.driver", "E:\\project\\chromedriver.exe");
@@ -39,7 +40,7 @@ public class Google1 {
 		driver.get("https://www.google.com/");
 		w.until(ExpectedConditions.visibilityOfElementLocated(By.name("q")));	
 	}
-	@Test(dataProvider="searchword")
+	@Test(priority=1,dataProvider="searchword")
 	public void search(String x) throws Exception
 	{
 		driver.findElement(By.name("q")).sendKeys(x,Keys.ENTER);
@@ -65,7 +66,7 @@ public class Google1 {
 			Assert.assertTrue(true, "google title test failed");
 		}
 	}
-	@AfterMethod
+	@Test(priority=2)
 	public void close()
 	{
 		driver.close();
