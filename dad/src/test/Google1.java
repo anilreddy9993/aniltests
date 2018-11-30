@@ -7,22 +7,24 @@ import java.util.Date;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+//import org.openqa.selenium.support.ui.ExpectedConditions;
+//import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
+@Listeners(Listeners1.class)
 public class Google1
 {
-	public ChromeDriver driver;
-	public WebDriverWait w=new WebDriverWait(driver,20);
-	@DataProvider(name="searchword")
+	public FirefoxDriver driver;
+	//public WebDriverWait w=new WebDriverWait(driver,20);
+	/*@DataProvider(name="searchword")
 	public Object[][] testdata()
 	{
 		return new Object[][]
@@ -31,16 +33,18 @@ public class Google1
 		{"appium"},
 		{"reddy"}
 	 };
-	} 
+	} */
 	@Test(priority=0)
-	public void launch()
+	public void launch() throws Exception
 	{
-		System.setProperty("webdriver.chrome.driver", "E:\\project\\chromedriver.exe");
-		driver=new ChromeDriver();
+		System.setProperty("webdriver.gecko.driver", "E:\\project\\geckodriver.exe");
+		driver=new FirefoxDriver();
 		driver.get("https://www.google.com/");
-		w.until(ExpectedConditions.visibilityOfElementLocated(By.name("q")));	
+		Thread.sleep(5000);
+		//w.until(ExpectedConditions.visibilityOfElementLocated(By.name("q")));	
 	}
-	@Test(priority=1,dataProvider="searchword")
+	@Test(priority=1)
+	@Parameters({"searchword"})
 	public void search(String x) throws Exception
 	{
 		driver.findElement(By.name("q")).sendKeys(x,Keys.ENTER);

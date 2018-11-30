@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="suite" parallel="false">
+<suite name="suite" parallel="Tests" thread-count="3">
+<listeners>
+<listeners class-name="test.Listeners1"/>
+</listeners>
   <test name="Test">
+  <parameter name="searchword" value="kalam"/>
      <classes>
-      <class name="test.Search1"/>
+      <class name="test.Google1"/>
+    </classes>
+  </test> 
+  <listeners>
+<listeners class-name="test.Listeners1"/>
+</listeners>
+   <test name="Test2">
+  <parameter name="searchword" value="reddy"/>
+     <classes>
+      <class name="test.Google1"/>
+    </classes>
+  </test> 
+  <listeners>
+<listeners class-name="test.Listeners1"/>
+</listeners>
+   <test name="Test3">
+  <parameter name="searchword" value="appium"/>
+     <classes>
+      <class name="test.Google1"/>
     </classes>
   </test> 
 </suite>
