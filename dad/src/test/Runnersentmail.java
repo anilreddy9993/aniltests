@@ -8,7 +8,7 @@ import java.util.Date;
 
 import jxl.Sheet;
 import jxl.Workbook;
-import jxl.read.biff.BiffException;
+
 import jxl.write.Alignment;
 import jxl.write.Label;
 import jxl.write.WritableCellFormat;
@@ -63,10 +63,11 @@ public class Runnersentmail {
 		wsh2.addCell(l2);
 		
 		//create object to the methods class
-		Gmailsentmethods mco=new Gmailsentmethods();
+		Gmailloginmethods mco=new Gmailloginmethods();
 		
 		//collect all the methods from methods class
 		Method m[]=mco.getClass().getMethods();
+		System.out.println("hello");
 		
 		// keyword driven
 		try
@@ -110,6 +111,7 @@ public class Runnersentmail {
 										rwb.close();
 										//stop run and exit
 										System.exit(0);
+										System.out.println("hello");
 									}
 									if(r.contains("failed")||r.contains("interrupted"))
 									{
@@ -121,9 +123,23 @@ public class Runnersentmail {
 							
 						}
 					}//j closing
-				}
-			}//i closing
-		}//try closing
+					if(flag==0)
+					{
+						
+						// to print the test passed or failed
+						Label l=new Label(nouc1,i,"passed",cf);
+						wsh1.addCell(l);
+					}
+					else
+					{
+						Label l=new Label(nouc1,i,"failed",cf);//
+						wsh1.addCell(l);
+					}
+				} 
+				
+			}// for i closing
+		}
+			
 		catch(Exception ex)
 		{
 			System.out.println(ex.getMessage());
@@ -131,6 +147,7 @@ public class Runnersentmail {
 		wwb.write();
 		wwb.close();
 		rwb.close();
+		mco.close();
 	}
 
 }
