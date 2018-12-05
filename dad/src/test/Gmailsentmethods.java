@@ -23,11 +23,13 @@ public class Gmailsentmethods
 	{
 		if(e.contentEquals("chrome"))
 		{
+			System.out.println("hi");
 			System.setProperty("webdriver.chrome.driver", "E:\\project\\chromedriver.exe");
 			driver=new ChromeDriver();
 		}
 		else if(e.equalsIgnoreCase("firefox"))
 		{
+			System.out.println("hi");
 			System.setProperty("webdriver.gecko.driver", "E:\\project\\geckodriver.exe");
 			driver=new FirefoxDriver();
 		}
@@ -35,6 +37,7 @@ public class Gmailsentmethods
 		{
 			return("unknown browser");
 		}
+		System.out.println("hi");
 		driver.get(d);
 		wait=new WebDriverWait(driver,20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@name='identifier']")));
@@ -53,7 +56,7 @@ public class Gmailsentmethods
 		driver.findElement(By.xpath(e)).click();
 		return ("done");
 	}
-	public String validateMail(String e,String d,String c) throws IOException
+	public String validateMail(String e,String d,String c) throws Exception
 	{
 	try 
 	  {
@@ -74,9 +77,10 @@ public class Gmailsentmethods
 			return("test was interrupted"+temp+".png");
 		}
 	}
-	public void close()
+	public String close()
 	{
 		driver.close();
+		return ("done");
 	}
 	public String screenShot() throws IOException
 	{
