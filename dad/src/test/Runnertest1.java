@@ -99,7 +99,7 @@ public class Runnertest1 {
 										if(m[k].getName().equals(mn))
 										{
 											//to reuse the methods in class
-											String r=(String) m[k].invoke(mco1, e,d,c);
+											String r=(String) m[k].invoke(mco1,e,d,c);
 											Label lb=new Label(nouc2,j,r,cf);
 											//step results
 											wsh2.addCell(lb);
@@ -141,7 +141,7 @@ public class Runnertest1 {
 					
 				catch(Exception ex)
 				{
-					System.out.println(ex.getMessage());
+					System.out.println(ex);
 				}
 				wwb.write();
 				wwb.close();

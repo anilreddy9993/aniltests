@@ -29,7 +29,7 @@ public class Gmailsentmethods
 		}
 		else if(e.equalsIgnoreCase("firefox"))
 		{
-			System.out.println("hi");
+		
 			System.setProperty("webdriver.gecko.driver", "E:\\project\\geckodriver.exe");
 			driver=new FirefoxDriver();
 		}
@@ -37,15 +37,16 @@ public class Gmailsentmethods
 		{
 			return("unknown browser");
 		}
-		System.out.println("hi");
+		
 		driver.get(d);
-		wait=new WebDriverWait(driver,20);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@name='identifier']")));
+	//	wait=new WebDriverWait(driver,20);
+	//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@name='identifier']")));
 		driver.manage().window().maximize();
 		return("done");
 	}
 	public String fill(String e,String d,String c)
 	{
+		wait=new WebDriverWait(driver,20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(e)));
 		driver.findElement(By.xpath(e)).sendKeys(d);
 		return ("done");
